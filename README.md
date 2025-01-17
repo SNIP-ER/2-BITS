@@ -30,6 +30,6 @@
   <tr>
     <td align="center">1.0.4</td>
     <td align="center">Fixed some critical bugs. Added file layout</td>
-    <td align="center"><a href="https://github.com/SNIP-ER/2-BITS/tree/main/1.0.4">link</a></td>
+    <td align="center"><a target="_blank" href="https://github.com/SNIP-ER/2-BITS/tree/main/1.0.4">link</a></td>
   </tr>
 </table>
