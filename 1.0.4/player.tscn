@@ -1,0 +1,356 @@
+[gd_scene load_steps=32 format=3 uid="uid://djsnx0eiv0wgj"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_w7i65"]
+[ext_resource type="Texture2D" uid="uid://dqkdqdlhvnaw3" path="res://Tilemap/Player/Drop.png" id="3_k5fun"]
+[ext_resource type="Texture2D" uid="uid://cyg3xkfreem4v" path="res://Tilemap/Player/Idle1.png" id="4_dqytl"]
+[ext_resource type="Texture2D" uid="uid://bxs56q4snpqkr" path="res://Tilemap/Player/Idle2.png" id="5_snfxf"]
+[ext_resource type="Texture2D" uid="uid://0vr67ww7ik8t" path="res://Tilemap/Player/Jump.png" id="6_yivet"]
+[ext_resource type="Texture2D" uid="uid://gblcewk74vbx" path="res://Tilemap/Player/Run1.png" id="7_dtekg"]
+[ext_resource type="Texture2D" uid="uid://c7k7abdnraoh" path="res://Tilemap/Player/Run2.png" id="8_2dprg"]
+[ext_resource type="AudioStream" uid="uid://b7kd15dbofflo" path="res://Assets/Effects/step.MP3" id="9_w5kg2"]
+[ext_resource type="AudioStream" uid="uid://cdg1ipx58upaf" path="res://Assets/Effects/step2.MP3" id="10_lwsm3"]
+[ext_resource type="AudioStream" uid="uid://bbmh1g6h1otfr" path="res://Assets/Effects/dead.MP3" id="11_dhvrt"]
+[ext_resource type="AudioStream" uid="uid://brpitpubhswaf" path="res://Assets/Effects/jump.mp3" id="11_mkihv"]
+[ext_resource type="AudioStream" uid="uid://c2hfhb0kcv1x8" path="res://Assets/Effects/prig_1.wav" id="12_ew7so"]
+[ext_resource type="AudioStream" uid="uid://cal2w54yvpbd3" path="res://Assets/Effects/prig_2.wav" id="13_owhr3"]
+[ext_resource type="AudioStream" uid="uid://idfbmt8d8d6h" path="res://Assets/Effects/prig_3.wav" id="14_fu1vt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8my2"]
+size = Vector2(12, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c64dk"]
+atlas = ExtResource("3_k5fun")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icdnh"]
+atlas = ExtResource("4_dqytl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgn0e"]
+atlas = ExtResource("5_snfxf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07fww"]
+atlas = ExtResource("6_yivet")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na2s0"]
+atlas = ExtResource("7_dtekg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqkir"]
+atlas = ExtResource("8_2dprg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fp12"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c64dk")
+}],
+"loop": false,
+"name": &"Drop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icdnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgn0e")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07fww")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na2s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqkir")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_6hmbt"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Deth"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Saund/Deth:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gidyx"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Drop"]
+}
+
+[sub_resource type="Animation" id="Animation_wb5da"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Idle"]
+}
+
+[sub_resource type="Animation" id="Animation_rmuab"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Jump"]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Saund/Jump")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_mkihv")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_rds04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Saund/Deth:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Saund/Sept:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_udk3a"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Run"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Saund/Sept:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_otm50"]
+_data = {
+"Deth": SubResource("Animation_6hmbt"),
+"Drop": SubResource("Animation_gidyx"),
+"Idle": SubResource("Animation_wb5da"),
+"Jump": SubResource("Animation_rmuab"),
+"RESET": SubResource("Animation_rds04"),
+"Run": SubResource("Animation_udk3a")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bpyog"]
+streams_count = 2
+stream_0/stream = ExtResource("9_w5kg2")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("10_lwsm3")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bnveh"]
+streams_count = 3
+stream_0/stream = ExtResource("12_ew7so")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("13_owhr3")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("14_fu1vt")
+stream_2/weight = 1.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_w7i65")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_k8my2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -2)
+sprite_frames = SubResource("SpriteFrames_3fp12")
+animation = &"Run"
+autoplay = "Idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_otm50")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+
+[node name="Saund" type="Node" parent="."]
+
+[node name="Sept" type="AudioStreamPlayer" parent="Saund"]
+stream = SubResource("AudioStreamRandomizer_bpyog")
+volume_db = -10.0
+pitch_scale = 0.7
+bus = &"Sounds"
+
+[node name="Deth" type="AudioStreamPlayer" parent="Saund"]
+stream = ExtResource("11_dhvrt")
+bus = &"Sounds"
+
+[node name="Jump" type="AudioStreamPlayer" parent="Saund"]
+volume_db = -4.0
+bus = &"Sounds"
+
+[node name="prig" type="AudioStreamPlayer" parent="Saund"]
+stream = SubResource("AudioStreamRandomizer_bnveh")
+volume_db = -10.0

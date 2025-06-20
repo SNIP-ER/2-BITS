@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://dt4iu4i7bi528"]
+
+[ext_resource type="Texture2D" uid="uid://bj0o33pagx8gm" path="res://Tilemap/Player2/ventik.png" id="1_7xaiv"]
+[ext_resource type="Script" path="res://ventik.gd" id="1_xeet6"]
+[ext_resource type="Texture2D" uid="uid://b7qcqlukalilt" path="res://Tilemap/potoc_r.png" id="3_yye88"]
+[ext_resource type="AudioStream" uid="uid://ddigr31xvyqvt" path="res://Assets/Effects/ventik.mp3" id="4_10r8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cgia"]
+size = Vector2(14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttiv6"]
+atlas = ExtResource("1_7xaiv")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrt15"]
+atlas = ExtResource("1_7xaiv")
+region = Rect2(14, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_226os"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttiv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrt15")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usic7"]
+atlas = ExtResource("3_yye88")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwr87"]
+atlas = ExtResource("3_yye88")
+region = Rect2(14, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d008n"]
+atlas = ExtResource("3_yye88")
+region = Rect2(28, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e85si"]
+atlas = ExtResource("3_yye88")
+region = Rect2(42, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_poxqq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usic7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwr87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d008n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e85si")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whsx3"]
+size = Vector2(80, 16)
+
+[node name="Ventik_r" type="Area2D"]
+script = ExtResource("1_xeet6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_5cgia")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_226os")
+animation = &"Run"
+autoplay = "Run"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, 0)
+sprite_frames = SubResource("SpriteFrames_poxqq")
+animation = &"Run"
+autoplay = "Run"
+frame_progress = 0.335259
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(48, 0)
+shape = SubResource("RectangleShape2D_whsx3")
+
+[node name="vent" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_10r8k")
+volume_db = -7.0
+autoplay = true
+max_distance = 100.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

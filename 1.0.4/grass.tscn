@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://dta4eplgcj7t3"]
+
+[ext_resource type="Texture2D" uid="uid://c74dpxoj5mevy" path="res://Tilemap/Player2/5.png" id="1_irhfr"]
+[ext_resource type="Texture2D" uid="uid://b8qf0xg8i4lpf" path="res://Tilemap/Player2/tile_0038.png" id="2_0qabd"]
+[ext_resource type="Texture2D" uid="uid://vrfypt8rcbuj" path="res://Tilemap/Player2/6.png" id="3_o2hwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4u5h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8pxs"]
+atlas = ExtResource("1_irhfr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tocod"]
+atlas = ExtResource("2_0qabd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu413"]
+atlas = ExtResource("3_o2hwv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkfwr"]
+atlas = ExtResource("2_0qabd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3exss"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8pxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tocod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu413")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkfwr")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Grass" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b4u5h")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3exss")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 1
+frame_progress = 0.72125

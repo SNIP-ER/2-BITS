@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://imfjl84jwt5g"]
+
+[ext_resource type="Texture2D" uid="uid://c2avaxmur0yxs" path="res://Tilemap/Player2/key.png" id="1_2nthl"]
+[ext_resource type="Script" path="res://key.gd" id="1_6cgkl"]
+[ext_resource type="AudioStream" uid="uid://dc0q6cqfo335b" path="res://Assets/Effects/key.mp3" id="3_in5bg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kksfv"]
+size = Vector2(8, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii4xj"]
+atlas = ExtResource("1_2nthl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqd70"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii4xj")
+}],
+"loop": true,
+"name": &"Key",
+"speed": 5.0
+}]
+
+[node name="Key" type="Area2D"]
+script = ExtResource("1_6cgkl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kksfv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oqd70")
+animation = &"Key"
+
+[node name="key" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_in5bg")
+pitch_scale = 1.61
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

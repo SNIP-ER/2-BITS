@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv3i0uvun16sx"]
+
+[ext_resource type="Script" path="res://ship.gd" id="1_26v81"]
+[ext_resource type="Texture2D" uid="uid://bovxwaeqj01kr" path="res://Tilemap/Player2/ship.png" id="1_fykgf"]
+[ext_resource type="AudioStream" uid="uid://bbmh1g6h1otfr" path="res://Assets/Effects/dead.MP3" id="3_6yvln"]
+
+[node name="ship" type="Area2D"]
+script = ExtResource("1_26v81")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, 10, -8, 7, -7, 4, -1, -6, 1, -6, 7, 4, 8, 7, 8, 10)
+
+[node name="Ship" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("1_fykgf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6yvln")
+volume_db = -10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

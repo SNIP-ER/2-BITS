@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://s2q1y008h42d"]
+
+[ext_resource type="Script" path="res://cry.gd" id="1_yppi8"]
+[ext_resource type="AudioStream" uid="uid://bbmh1g6h1otfr" path="res://Assets/Effects/dead.MP3" id="2_dk2sr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2qkj"]
+size = Vector2(1583, 20)
+
+[node name="Cry" type="Area2D"]
+script = ExtResource("1_yppi8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(781.5, 0)
+shape = SubResource("RectangleShape2D_k2qkj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dk2sr")
+volume_db = -10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
