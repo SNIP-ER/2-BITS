@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbkt4i0lipqjl"]
+
+[sub_resource type="Curve" id="Curve_ddju3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.362637), -0.906593, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k5bw8"]
+curve = SubResource("Curve_ddju3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bi5s7"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(15, 0, 1)
+gravity = Vector3(0, 50, 0)
+scale_curve = SubResource("CurveTexture_k5bw8")
+
+[node name="Part_ground" type="GPUParticles2D"]
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_bi5s7")
